@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Hangman</title>
+        <link rel="stylesheet" type="text/css" href="hangman_style.css">
+        <link rel="icon" type="image/x-icon" href="images/hangman_image.png">
+    </head>
+    <body>
+        <div class="content-container">
+            <div id="image-container">
+                <img src="images/hangman_image_negative.png" alt="hangman" height="200">
+            </div>
+            <div id="word-container">
+                <pre>_ _ _ _ _ _</pre>
+            </div>
+            <div id="input-container">
+                <form method="post">
+                    <label for="guess">Make your guess: </label><br>
+                    <input type="text" name="guess" id="guess"><br>
+                    <input type="submit" name="submit" value="Guess" class="input-button" id="guess-submit">
+                    <input type="reset" name="reset" value="Clear" class="input-button">
+                </form>
+                <p>Guesses remaining: 7</p>
+                <div id="restart-container">
+                    <form method="get">
+                        <a href="menu.html"><img src="images/restart_icon.png" alt="restart" height="50" id="restart"></a>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </body>
+</html>
