@@ -33,12 +33,12 @@
             return $_SESSION["word"];
     }
 
-    function getAllCurrentLetter(){
+    function getAllCorrectLetter(){
         return isset($_SESSION["responses"]) ? $_SESSION["responses"] : [];
     }
 
     function addLetter($letter){
-        $response = getAllCurrentLetter();
+        $response = getAllCorrectLetter();
         array_push($response, $letter);
         $_SESSION["responses"] = $response;
     }
@@ -66,7 +66,7 @@
 
     function isWordComplete(){
         $guess = getCurrentWord();
-        $response = getAllCurrentLetter();
+        $response = getAllCorrectLetter();
         $max_guess = strlen($guess);
         for($i = 0; $i < $max_guess; $i++){
             if(!in_array($guess[$i], $response)){
@@ -135,7 +135,6 @@
     if(isset($_POST["letter_guess"])) {
         $letter = isset($_POST["letter_guess"]) ? $_POST["letter_guess"] : null;
         addUsedLetter($letter);
-        print_r(getAllUsedLetter());
         if(isLetterCorrect($letter) ) {
             addLetter($letter);
             if(isWordComplete()){
@@ -199,7 +198,7 @@
                 
                 for($i =0; $i < $max_guess; $i++): 
                 $letter = $guess[$i] ?>
-                <?php if(in_array($letter, getAllCurrentLetter())): ?>
+                <?php if(in_array($letter, getAllCorrecttLetter())): ?>
                 <span id="underline"> <?php echo $letter ?></span>
                 <?php else : ?>
                 <span id="underline">&nbsp;&nbsp;&nbsp;</span>
