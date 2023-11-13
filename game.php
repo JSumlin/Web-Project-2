@@ -43,7 +43,15 @@
         $_SESSION["responses"] = $response;
     }
 
-    
+    function getAllUsedLetter(){
+        return isset($_SESSION["used_letter"]) ? $_SESSION["used_letter"] : [];
+    }
+
+    function addUsedLetter($letter){
+        $response = getAllUsedLetter();
+        array_push($response, $letter);
+        $_SESSION["used_letter"] = $response;
+    }
 
     function isLetterCorrect($letter){
         $guess = getCurrentWord();
@@ -118,6 +126,7 @@
         unset($_SESSION["word"]);
         unset($_SESSION["part"]);
         unset($_SESSION["responses"]);
+        unset($_SESSION["used_letter"]);
         $GAME_OVER = false;
         
         
@@ -125,9 +134,10 @@
 
     if(isset($_POST["letter_guess"])) {
         $letter = isset($_POST["letter_guess"]) ? $_POST["letter_guess"] : null;
-        addLetter($letter);
+        addUsedLetter($letter);
+        print_r(getAllUsedLetter());
         if(isLetterCorrect($letter) ) {
-            /*addLetter($letter);*/
+            addLetter($letter);
             if(isWordComplete()){
                 $GAME_OVER = true;
                 gameCompleted();
@@ -176,7 +186,7 @@
     <link rel="stylesheet" href="stylesheet.css">
 </head>
 <body>
-<div id=container>
+
     <h1>Hangman Game</h1>
     <p>Welcome, <?php echo $_SESSION["user_name"] ?></p>
     <p>you pick <?php echo $_SESSION["level"] ?> level</p>
@@ -201,13 +211,19 @@
                 <?php
                     for($i = 1; $i <= 26; $i++): 
                         $letter = chr($i + 64);
+
+                        if(in_array($letter, getAllUsedLetter())):
                 ?>
-                    <span> <input type="submit" name="letter_guess" value="<?=$letter?>" > </span>
+                    <span class="used_letter"> <input type="submit" name="letter_guess" value="<?=$letter?>" > </span>
                         
                 <?php
+                    else:
+                ?>
+                    <span class="letter"> <input type="submit" name="letter_guess" value="<?=$letter?>" > </span>
+<?php
                     /*if($i % 6 == 0) {
                         echo "<br>";
-                        }*/
+                        }*/endif;
                     endfor;
                 ?>
                 
@@ -225,7 +241,7 @@
                 <p>you lose</p>
             <?php endif; ?>
             
-</div>             
+           
 </body>
 </html>
 
