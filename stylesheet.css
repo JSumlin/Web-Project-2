@@ -54,3 +54,50 @@ p {
  
     cursor: not-allowed;
 }
+
+.button {
+    width: 60px;
+    height: 60px;
+    background-color: #04AA6D;
+    border: 1px solid black;
+    border-radius: 10px;
+    color: white;
+    font-size: 50px;
+    padding: 15px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+
+.button:hover {
+    background-color: #037b4f;
+    border: none;
+    color: white;
+    padding: 15px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.used_button {
+    width: 60px;
+    height: 60px;
+    background-color: red;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    padding: 15px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: not-allowed;
+}
+
