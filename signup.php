@@ -1,59 +1,5 @@
-<?php
-session_start();
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Process the form data
-    $name = htmlspecialchars($_POST['name']);
-    $email = htmlspecialchars($_POST['email']);
-    $username = htmlspecialchars($_POST['username']);
-    $password = $_POST['password'];
-    $confirmPassword = $_POST['confirm_password'];
-
-    // Validate form data
-    $errors = [];
-
-    if (empty($name) || empty($email) || empty($username) || empty($password) || empty($confirmPassword)) {
-        $errors[] = "All fields are required.";
-    }
-
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $errors[] = "Invalid email.";
-    }
-
-    if ($password !== $confirmPassword) {
-        $errors[] = "Passwords do not match.";
-    }
-
-    $datafile = @fopen("signup.txt", 'r');
-    $array = explode("\n", fread($datafile, filesize("signup.txt")));
-
-    foreach ($array as $data) {
-        $userdata = explode(",", $data);
-        if ($userdata[2] == $_POST['username']) {
-            $errors[] = TRUE;
-            echo "This User already exists. Login or create a new user";
-            break;
-        }
-    }
-
-    // If no errors, perform user registration
-    if (empty($errors)) {
-        $newuser = array(
-            $_POST["name"],
-            $_POST["email"],
-            $_POST["username"],
-            $_POST["password"]
-        );
-
-        $newuser_info = implode(",", $newuser);
-
-        file_put_contents("signup.txt", $newuser_info . "\n", FILE_APPEND);
-
-        // Redirect to login page after successful registration
-        header("Location: login.php");
-        exit();
-    }
-}
+<?
+    session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -79,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
         ?>
 
-        <form class="signup-form" method="post" action="login.php">
+        <form class="signup-form" method="POST" action="login.php">
             <label for="name">Name:</label>
             <input type="text" name="name" size="24" placeholder="Name" required><br>
             <label for="email">Email:</label>
@@ -96,6 +42,71 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
             <p class="login-link">Already have an account? <a href="login.php">Login</a></p>
         </form>
+		
+<?php
+
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Process the form data
+    $name = htmlspecialchars($_POST['name']);
+    $email = htmlspecialchars($_POST['email']);
+    $username = htmlspecialchars($_POST['username']);
+    $password = $_POST['password'];
+    $confirmPassword = $_POST['confirm_password'];
+
+    // Validate form data
+    $errors = [];
+
+    if (empty($name) || empty($email) || empty($username) || empty($password) || empty($confirmPassword)) {
+        $errors[] = "All fields are required.";
+    }
+
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $errors[] = "Invalid email.";
+    }
+
+    if ($password !== $confirmPassword) {
+        $errors[] = "Passwords do not match.";
+    }
+
+    $datafile = "signup.txt"; 
+    $file = fopen($datafile, 'a') or die('Cannot open file ' . $datafile);
+
+    // Check if the username already exists
+    $userExists = false;
+    while (!feof($file)) {
+        $line = fgets($file);
+        $userdata = explode(",", $line);
+        if (trim($userdata[2]) === $username) {
+            $userExists = true;
+            break;
+        }
+    }
+    fclose($file);
+
+    if ($userExists) {
+        $errors[] = "This User already exists. Login or create a new user.";
+    } else {
+        // If no errors, perform user registration
+        $newuser = array(
+            $name,
+            $email,
+            $username,
+            $password
+        );
+
+        $newuser_info = implode(",", $newuser);
+
+        $file = fopen($datafile, 'a') or die('Cannot open file ' . $datafile);
+        fwrite($file, $newuser_info . "\n");
+        fclose($file);
+
+        // Redirect to login page after successful registration
+        header("Location: login.php");
+        exit();
+    }
+}
+?>
     </div>
 </body>
 </html>

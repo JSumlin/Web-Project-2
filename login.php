@@ -1,5 +1,37 @@
+<?
+    session_start();
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+
+    <title>User Login</title>
+</head>
+<body>
+
+
+<form action="main.php" method="post">
+    <div class="container">
+	<h2>Login</h2>
+        <label for="username">Username:</label>
+        <input type="text" placeholder="Enter Username" name="username" required><br>
+
+        <label for="password">Password:</label>
+        <input type="password" placeholder="Enter Password" name="password" required>
+
+        <div class="clearfix">
+            <button type="submit" class="submit" >Login</button>
+            <label><br>
+                <input type="checkbox" checked="checked" name="remember">Remember me
+            </label>
+        </div>
+    </div>
+</form>
+
 <?php
-session_start();
 
 $flag = FALSE;
 
@@ -47,35 +79,6 @@ session_destroy();
 setcookie("userName", "");
 setcookie("passWord", "");
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-
-    <title>User Login</title>
-</head>
-<body>
-
-
-<form action="" method="post">
-    <div class="container">
-	<h2>Login</h2>
-        <label for="username">Username:</label>
-        <input type="text" placeholder="Enter Username" name="username" required><br>
-
-        <label for="password">Password:</label>
-        <input type="password" placeholder="Enter Password" name="password" required>
-
-        <div class="clearfix">
-            <button type="submit" class="submit" >Login</button>
-            <label><br>
-                <input type="checkbox" checked="checked" name="remember">Remember me
-            </label>
-        </div>
-    </div>
-</form>
 
 </body>
 </html>
