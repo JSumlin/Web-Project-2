@@ -172,7 +172,28 @@
         session_destroy();
         header("location:login.php");
         exit;
+    }
 
+    if(isset($_POST["save"])){
+        $file_name = 'leaderboard.txt';
+        $user_name = $_SESSION["user_name"];
+        $score = $_SESSION["score"];
+        
+        $file = file($file_name, FILE_IGNORE_NEW_LINES);
+    
+        $write = fopen($file_name, "w");
+
+        foreach($file as $line){
+            if(!strstr($line, $user_name)){
+                fputs($write, "$line\n");
+            }
+        }
+        fclose($write);
+        
+        $append = fopen($file_name, "a") or die('Cannot open file ' . $file_name);
+        fwrite($append, "$user_name,$score\n");
+        fclose($append);
+    
     }
 ?>
 
@@ -213,12 +234,12 @@
 
                         if(in_array($letter, getAllUsedLetter())):
                 ?>
-                    <span class="used_letter"> <input type="submit" name="letter_guess" value="<?=$letter?>" > </span>
+                    <span class="used_button"> <input type="submit" name="letter_guess" value="<?=$letter?>" > </span>
                         
                 <?php
                     else:
                 ?>
-                    <span class="letter"> <input type="submit" name="letter_guess" value="<?=$letter?>" > </span>
+                    <span class="button"> <input type="submit" name="letter_guess" value="<?=$letter?>" > </span>
 <?php
                     /*if($i % 6 == 0) {
                         echo "<br>";
