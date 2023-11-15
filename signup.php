@@ -39,10 +39,6 @@
         ?>
 
         <form class="signup-form" method="POST" action="login.php">
-            <label for="name">Name:</label>
-            <input type="text" name="name" size="24" placeholder="Name" required><br>
-            <label for="email">Email:</label>
-            <input type="email" name="email" placeholder="Email" required><br>
             <label for="username">Username:</label>
             <input type="text" name="username" size="16" placeholder="Username" required><br>
             <label for="password">Password:</label>
@@ -61,8 +57,6 @@
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Process the form data
-    $name = htmlspecialchars($_POST['name']);
-    $email = htmlspecialchars($_POST['email']);
     $username = htmlspecialchars($_POST['username']);
     $password = $_POST['password'];
     $confirmPassword = $_POST['confirm_password'];
@@ -70,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Validate form data
     $errors = [];
 
-    if (empty($name) || empty($email) || empty($username) || empty($password) || empty($confirmPassword)) {
+    if (empty($username) || empty($password) || empty($confirmPassword)) {
         $errors[] = "All fields are required.";
     }
 
@@ -102,8 +96,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         // If no errors, perform user registration
         $newuser = array(
-            $name,
-            $email,
             $username,
             $password
         );
