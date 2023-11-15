@@ -21,6 +21,13 @@ h1 {
     text-shadow: 5px 5px 12px red;
     position: relative;
 }
+
+.title {
+    border-bottom: 2px solid white;
+    box-shadow: 0px 10px 10px black;
+    margin: 10px;
+    
+}
 a:link {
  color: #0080ff;
 }

@@ -79,13 +79,21 @@
 
 </head>
 <body>
+    <h1>        
+        <span class="title">H</span>
+        <span class="title">A</span>
+        <span class="title">N</span>
+        <span class="title">G</span>
+        <span class="title">M</span>
+        <span class="title">A</span>
+        <span class="title">N</span>
+    </h1>
 
-    <h1>The Hangman Game</h1>
     <div class="game"> 
         <div class="hangman">
             <p>Welcome, <?php echo $_SESSION["user_name"] ?></p>
             <p>Level: <?php echo $_SESSION["level"] ?></p>
-            <p>Score: <?php echo $_SESSION["score"] ?> </p>
+            <p>Score: <?php echo $_SESSION["score"] ?> </p> <br>
             <img src=" <?php echo getCurrentPic(getCurrentPart()) ?>" alt="hangman"> <br><br>
         </div>
         <div class="display">
@@ -139,7 +147,7 @@
                 <h4>You Found the word <?php echo $_SESSION["word"] ?> </h4>  <br>
                 <form action="" method="post">
                     <input type="submit" name="new_word" value="New Word">
-                    <input type="submit" name="reset" value="Main Menu">
+                    <input type="submit" name="main_menu" value="Main Menu">
                     <input type="submit" name="log_out" value="Log Out">
                     <input type="submit" name="save" value="Save">
                 </form>
@@ -148,7 +156,7 @@
                 <h4>You Not Found the word <?php echo $_SESSION["word"] ?></h4><br>
                 <form action="" method="post">
                     <input type="submit" name="new_word" value="New Word">
-                    <input type="submit" name="reset" value="Main Menu">
+                    <input type="submit" name="main_menu" value="Main Menu">
                     <input type="submit" name="log_out" value="Log Out">
                     <input type="submit" name="save" value="Save">
                 </form>
@@ -157,5 +165,4 @@
     </div>     
 </body>
 </html>
-
 
