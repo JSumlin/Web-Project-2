@@ -8,9 +8,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
 
-    <title>User Signup</title>
+    <title>New User Signup</title>
 </head>
 <body>
+        <div class="img">
+		
+            <img src="hangman_white.png" alt="Hangman">
+        </div>
+	<h1>
+        <span class="underline">H</span>
+        <span class="underline">A</span>
+        <span class="underline">N</span>
+        <span class="underline">G</span>
+        <span class="underline">M</span>
+        <span class="underline">A</span>
+        <span class="underline">N</span>
+    </h1>
     <div class="container">
         <h2>Sign Up</h2>
 
@@ -40,7 +53,7 @@
             <div class="clearfix">
                 <button type="submit" class="signupbtn">Sign Up</button><br>
             </div>
-            <p class="login-link">Already have an account? <a href="login.php">Login</a></p>
+            <p>Already have an account? <a href="login.php">Login</a></p>
         </form>
 		
 <?php

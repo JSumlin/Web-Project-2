@@ -1,11 +1,9 @@
 body {
 	font-family: Arial, Helvetica, sans-serif;
-            margin: 0;
-            padding-top: 20px;
-            background-image: url("./background.png");
-            background-size: cover; 
-            background-position: center;
-            background-attachment: fixed;
+    margin: 0;
+    padding-top: 20px;
+    background-image: url("./background.jpg");
+            
 }
 * {box-sizing: border-box}
 
@@ -28,6 +26,19 @@ hr {
   margin-bottom: 25px;
 }
 
+h1 {
+    font-family: 'Courier New', monospace;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 10px;
+    line-height: 1.5;
+ }
+
+.underline {
+    border-bottom: 2px solid black;
+    display: inline-block;
+    margin: 0 5px;
+ }
 
 button {
   background-color: #04AA6D;
@@ -50,11 +61,19 @@ button:hover {
   width: 50%;
   background-color: #4194cb;
 }
+.img{
+  padding-top: 100px;	
+  float: left;
+  margin-left: 50px; 
+  width: 3%;
 
+}
 .container {
   padding: 16px;
+  padding-right: 20px; 
+  float: right;
   width: 40%;
-  margin: auto;
+  margin-right: 100px; 
   background-color: rgba(255, 255, 255, 0.8);
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
