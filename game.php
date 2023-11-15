@@ -213,7 +213,7 @@
     <img width="200px" src=" <?php echo getCurrentPic(getCurrentPart()) ?>" alt="hangman"> <br><br>
     <?php
                 $guess = getCurrentWord();
-                echo $guess;
+                //echo $guess;
                 $max_guess = strlen($guess);
                 
                 
